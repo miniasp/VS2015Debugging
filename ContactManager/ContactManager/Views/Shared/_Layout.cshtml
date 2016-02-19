@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title - Contact Manager</title>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width" />
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <header>
+        <div class="content-wrapper">
+            <div class="float-left">
+                @Html.ActionLink("[逐步 PerfTip]", "StepPerfTip", "Home")
+                @Html.ActionLink("[不同優先權的執行緒]", "Threads", "Home")
+                @Html.ActionLink("[CPU 忙碌情況]", "CPUs", "Home")
+                @Html.ActionLink("[非同步異常模擬]", "AsyncAbor", "Home")
+                @Html.ActionLink("[執行緒問題競爭解決]", "Sync", "Home")
+            </div>
+        </div>
+    </header>
+    <div id="body">
+        @RenderSection("featured", required: false)
+        <section class="content-wrapper main-content clear-fix">
+            @RenderBody()
+        </section>
+    </div>
+    <footer>
+        <div class="content-wrapper">
+            <div class="float-left">
+                <p>&copy; @DateTime.Now.Year - Contact Manager</p>
+            </div>
+        </div>
+    </footer>
+    @Scripts.Render("~/bundles/jquery")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
