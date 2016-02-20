@@ -177,6 +177,28 @@ namespace ContactManager.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult MemoryLeak()
+        {
+            // 由於 settingsHelper 是一個靜態類別，他的 OnCurrencyChanged 是個靜態事件
+            // 每次執行新增委派都會加入 HomeController 的 "委派方法" method
+            // 此舉會導致 HomeController 因為被 settingsHelper.OnCurrencyChanged 參考而無法回收(Dispose)
+            // 因此每次執行 MemoryLeak 都會累積 HomeController 的物件實體，導致記憶體洩漏！
+            settingsHelper.OnCurrencyChanged += 委派方法;
+
+            settingsHelper.ChangeCurrency();
+            return RedirectToAction("Index");
+        }
+
+        List<string> fooListStrs = new List<string>();
+        public void 委派方法()
+        {
+            RandomStringHelper fooRandomStringHelper = new RandomStringHelper();
+            for (int i = 0; i < 1500; i++)
+            {
+                fooListStrs.Add(fooRandomStringHelper.RandomString(5000));
+            }
+        }
+
         public async Task<ActionResult> StepPerfTip()
         {
             string ServerUrl = "http://photoimageserver.azurewebsites.net";

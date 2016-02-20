@@ -135,6 +135,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helper\RandomStringHelper.cs" />
+    <Compile Include="Helper\settingsHelper.cs" />
     <Compile Include="Helper\不同優先權的執行緒Helper.cs" />
     <Compile Include="Helper\執行緒問題1競爭解決方法Helper.cs" />
     <Compile Include="Helper\矩陣相乘之非同步平行計算Helper.cs" />
